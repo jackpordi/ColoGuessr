@@ -7,6 +7,8 @@ import { usePickTextColor } from "./hooks/usePickTextColor";
 
 import './index.css'
 import { sleep } from './utils';
+import { SourceCodeButton } from './components/SourceCodeButton';
+import { DonateButton } from './components/DonateButton';
 
 const randomColor = () => "#" + Math.floor(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, "0");
 
@@ -45,8 +47,13 @@ export function App() {
   return (
     <div
       style={{ backgroundColor: color }}
-      class="w-screen h-screen flex flex-col items-center justify-center transition-colors duration-200"
+      class="flex flex-col w-screen h-screen transition-colors duration-200"
     >
+      <div class="p-2 flex flex-row justify-end">
+        <SourceCodeButton color={textColor} className="mx-2 w-10 h-10 md:w-12 md:h-12"/>
+        <DonateButton color={textColor} className="mx-2 w-10 h-10 md:w-12 md:h-12"/>
+      </div>
+      <div class="flex-1 flex flex-col items-center justify-center">
       <h1 class="text-7xl font-bold font-lobster mb-2" style={{ color: textColor }}>ColoGuessr</h1>
       <div class="font-mono my-2" style={{ color: textColor }}>
         What color is the background?
@@ -73,6 +80,7 @@ export function App() {
         Current Score: { count }
         <br/>
         High Score: { highScore }
+      </div>
       </div>
     </div>
   )
