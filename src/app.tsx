@@ -14,6 +14,7 @@ const randomColor = () => "#" + Math.floor(Math.random() * 0xFFFFFF << 0).toStri
 
 export function App() {
 
+  const [ colorFormat, setColorFormat ] = useState<"hex" | "rgb">("hex");
   const [ color, setColor ] = useState(randomColor());
   const [ showResults, setShowResults ] = useState(false);
 
@@ -44,6 +45,7 @@ export function App() {
     changeColor();
   };
 
+  console.log(colorFormat);
   return (
     <div
       style={{ backgroundColor: color }}
@@ -72,7 +74,7 @@ export function App() {
             onClick={() => onGuess(c)}
             disabled={showResults}
           >
-            { c.toUpperCase() }
+            { colorFormat === "rgb" ? formatHexToRGB(c) : c.toUpperCase() }
           </button>
         ))}
       </div>
@@ -82,6 +84,40 @@ export function App() {
         High Score: { highScore }
       </div>
       </div>
+        <div class="flex justify-center font-mono pb-2" style={{ color: textColor }}>
+        <span>
+          Format:
+          <select
+            name="format"
+            class="bg-transparent ml-2"
+            value={colorFormat}
+            // @ts-ignore
+            onChange={(e) => setColorFormat(e.target.value)}
+          >
+            <option value="rgb">RGB</option>
+            <option value="hex">Hex</option>
+          </select>
+        </span>
+      </div>
     </div>
   )
+}
+
+function formatHexToRGB(hex: string ) {
+
+  if (hex.indexOf('#') === 0) {
+    hex = hex.slice(1);
+  }
+  // convert 3-digit hex to 6-digits.
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+  if (hex.length !== 6) {
+    throw new Error('Invalid HEX color.');
+  }
+  const r = parseInt(hex.slice(0, 2), 16),
+  g = parseInt(hex.slice(2, 4), 16),
+  b = parseInt(hex.slice(4, 6), 16);
+
+  return `RGB(${r},${g},${b})`;
 }
