@@ -47,13 +47,13 @@ export function App() {
   return (
     <div
       style={{ backgroundColor: color }}
-      class="flex flex-col w-screen h-screen transition-colors duration-200"
+      class="flex flex-col flex-1 transition-colors duration-200"
     >
-      <div class="p-2 flex flex-row justify-end">
+      <div class="sticky p-2 flex flex-row justify-end">
         <SourceCodeButton color={textColor} className="mx-2 w-10 h-10 md:w-12 md:h-12"/>
         <DonateButton color={textColor} className="mx-2 w-10 h-10 md:w-12 md:h-12"/>
       </div>
-      <div class="flex-1 flex flex-col items-center justify-center">
+      <div class="flex-1 flex flex-col items-center justify-center -mt-8">
       <h1 class="text-7xl font-bold font-lobster mb-2" style={{ color: textColor }}>ColoGuessr</h1>
       <div class="font-mono my-2" style={{ color: textColor }}>
         What color is the background?
