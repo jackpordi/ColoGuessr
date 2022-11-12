@@ -1,4 +1,8 @@
-export function usePickTextColor(hex: string): "black" | "white" {
+export function usePickTextColor(
+  hex: string,
+  darkColor = "black",
+  lightColor = "white",
+): string {
 
   if (hex.indexOf('#') === 0) {
     hex = hex.slice(1);
@@ -16,7 +20,7 @@ export function usePickTextColor(hex: string): "black" | "white" {
 
   // https://stackoverflow.com/a/3943023/112731
   return (r * 0.299 + g * 0.587 + b * 0.114) > 186
-    ? 'black'
-    : 'white';
+    ? darkColor
+    : lightColor;
 
 }
