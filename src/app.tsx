@@ -58,7 +58,7 @@ export function App() {
       <div class="flex-1 flex flex-col items-center justify-center -mt-8">
       <h1 class="text-7xl font-bold font-lobster mb-2" style={{ color: textColor }}>ColoGuessr</h1>
       <div class="font-mono my-2" style={{ color: textColor }}>
-        What color is the background?
+        Which color is the background?
       </div>
       <div class="flex flex-col md:flex-row my-2 w-1/2 md:w-fit">
         { allColors.map((c) => (
