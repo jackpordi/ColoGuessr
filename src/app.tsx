@@ -6,11 +6,10 @@ import { useHighScore } from "./hooks/useHighScore";
 import { usePickTextColor } from "./hooks/usePickTextColor";
 
 import './index.css'
-import { sleep } from './utils';
+import { formatHexToRGB, randomColor, sleep } from './utils';
 import { SourceCodeButton } from './components/SourceCodeButton';
 import { DonateButton } from './components/DonateButton';
 
-const randomColor = () => "#" + Math.floor(Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, "0");
 
 export function App() {
 
@@ -28,7 +27,11 @@ export function App() {
     setColor(randomColor());
   }, [ setColor ]);
 
-  const allColors = useMemo(() => ([color, randomColor(), randomColor(), ].sort(() => Math.random() - 0.5)), [ color ]);
+  const allColors = useMemo(() => ([
+    color,
+    randomColor(),
+    randomColor(),
+  ].sort(() => Math.random() - 0.5)), [ color ]);
 
   const onGuess = async (c: string) => {
     if (c === color) {
@@ -45,7 +48,6 @@ export function App() {
     changeColor();
   };
 
-  console.log(colorFormat);
   return (
     <div
       style={{ backgroundColor: color }}
@@ -103,21 +105,3 @@ export function App() {
   )
 }
 
-function formatHexToRGB(hex: string ) {
-
-  if (hex.indexOf('#') === 0) {
-    hex = hex.slice(1);
-  }
-  // convert 3-digit hex to 6-digits.
-  if (hex.length === 3) {
-    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-  }
-  if (hex.length !== 6) {
-    throw new Error('Invalid HEX color.');
-  }
-  const r = parseInt(hex.slice(0, 2), 16),
-  g = parseInt(hex.slice(2, 4), 16),
-  b = parseInt(hex.slice(4, 6), 16);
-
-  return `RGB(${r},${g},${b})`;
-}
