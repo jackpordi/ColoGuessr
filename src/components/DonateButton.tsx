@@ -6,7 +6,12 @@ interface Props {
 }
 
 export const DonateButton = ({ color, className } : Props) => (
-  <a href="https://www.buymeacoffee.com/jackpordi" rel="noopener noreferrer" target="_blank">
+  <a
+    href="https://www.buymeacoffee.com/jackpordi"
+    rel="noopener noreferrer"
+    target="_blank"
+    aria-label="Donate to author"
+  >
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"

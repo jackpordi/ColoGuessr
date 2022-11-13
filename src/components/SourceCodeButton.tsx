@@ -13,6 +13,7 @@ export const SourceCodeButton = ({ color, className } : Props) => (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke={color}
+    aria-label="View source code"
     class={clsx(
       className,
       "transition-all hover:scale-110",
