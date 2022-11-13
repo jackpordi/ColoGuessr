@@ -62,12 +62,17 @@ export function App() {
       <div class="font-mono my-2" style={{ color: textColor }}>
         Which color is the background?
       </div>
-      <div class="flex flex-col md:flex-row my-2 w-1/2 md:w-fit">
+      <div class={clsx(
+        "flex flex-col md:flex-row my-2 md:w-fit",
+      )}>
         { allColors.map((c) => (
           <button
             class={clsx(
-              "transition-colors duration-300 overflow-hidden",
-              "my-2 md:my-0 shadow-lg mx-2 px-4 py-2 font-mono rounded-full",
+              "whitespace-nowrap transition-colors duration-300 overflow-hidden",
+              "shadow-lg font-mono rounded-full",
+              "md:my-0 md:mx-2 md:px-4 md:py-2",
+              "my-3 py-3",
+                colorFormat === "hex" ? "px-12" : "px-4",
               !showResults && "active:bg-black active:text-white md:hover:bg-black md:hover:text-white bg-white font-mono",
               showResults && (c === color ? "bg-green-500" : "bg-red-500"),
               showResults && "text-white"
